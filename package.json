@@ -11,7 +11,8 @@
     "test:watch": "jest -c --watch",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix \"src/**/*.js\""
+    "lint:fix": "eslint --fix \"src/**/*.js\"",
+    "json-server": "json-server --watch ./src/data/users.json --port 5000"
   },
   "jest": {
     "moduleNameMapper": {

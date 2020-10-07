@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
+import AutoSuggest from 'react-autosuggest';
 import universitiesJson from '../data/universities.json';
 import countriesJson from '../data/countries.json';
-import { useLocation } from "react-router-dom";
 import { searchUniversity } from './api';
-import AutoSuggest from 'react-autosuggest';
 
 import './search.scss';
 
@@ -21,16 +21,16 @@ const Title = ({ text }) => <h5 className="card-title">{text}</h5>;
 const SubTitle = ({ text }) => <div className="sub-title">{text}</div>;
 
 const CountryInfo = ({ countryName, countryCode, province }) => (
-  <div>
-    <span>{countryName}</span> &middot;
-    <span>{countryCode}</span> &middot;
-    <span>{province}</span>
+  <div className="country-info-wrapper">
+    <span>{countryName}</span>
+    {/* <span>{countryCode}</span> &middot;
+    <span>{province}</span> */}
   </div>
 );
 
 const WebsiteLinks = ({ links }) => (
   <div className="website-links-wrapper">
-    <div>Websites</div>
+    {/* <div>Websites</div> */}
     <ul>
       {
         links.map((link) => (
@@ -51,12 +51,13 @@ const UniversityCard = ({ university }) => (
   <div className="card">
     <div className="card-body">
       <Title text={university.name} />
-      <SubTitle text={getFirstDomain(university.domains)} />
+
       <CountryInfo
         countryName={university.country}
         countryCode={university.alpha_two_code}
         province={university['state-province']}
       />
+      <SubTitle text={getFirstDomain(university.domains)} />
       <WebsiteLinks
         links={university.web_pages}
       />
@@ -74,15 +75,27 @@ const UniversityList = ({ universities }) => (
   </ul>
 );
 
-function useQuery() {
+const useQuery = () => {
   return new URLSearchParams(useLocation().search);
-}
+};
+
+const getSearchTermHeader = (name, country) => {
+  let header = 'All around the world';
+  if(name !== '' && country !== '') {
+    header = `${name} in ${country}`;
+  }else if(name === '' && country !== '') {
+    header = `All universities in ${country}`;
+  }else if(name !== '' && country === '') {
+    header = `${name} around the world`;
+  }
+  return header;
+};
 
 const SEARCH_DELAY_TIME_IN_MS = 350;
-const RESULT_LIMIT = 20;
+const RESULT_LIMIT = 15;
 
 const Search = () => {
-  let query = useQuery();
+  const query = useQuery();
   let timerId = null;
 
   const [maxPages, setMaxPages] = useState(1);
@@ -101,7 +114,11 @@ const Search = () => {
   const fetchData = async (name, countryName) => {
     setLoading(true);
 
-    const data = await searchUniversity(name, countryName);
+    let data = universitiesJson;
+
+    if(name !== '' || countryName !== ''){
+      data = await searchUniversity(name, countryName);
+    }
     setMaxPages(Math.ceil(data.length / RESULT_LIMIT));
 
     setOriginUniversities(data);
@@ -113,7 +130,6 @@ const Search = () => {
   useEffect(() => {
     timerId = setTimeout(() => {
       fetchData(searchTerm, country);
-      console.log(country, 'Selected')
     }, firstRender ? 0 : SEARCH_DELAY_TIME_IN_MS);
 
     return () => clearTimeout(timerId);
@@ -127,15 +143,16 @@ const Search = () => {
     const startAt = (currentPage * RESULT_LIMIT);
     const endAt = startAt + RESULT_LIMIT;
     setUniversities(originUniversities.slice(startAt, endAt));
+    window.scrollTo(0, 0);
   }, [currentPage]);
 
   const top20 = universities.slice(0, RESULT_LIMIT);
+  const searchTermHeader = getSearchTermHeader(searchTerm, country);
 
   return (
 
     <div className="main-container">
-
-      <div className="search-container">
+      <div className="search-container mt-4 pl-2">
         <input
           type="text"
           className="form-control"
@@ -144,52 +161,62 @@ const Search = () => {
           onChange={e => setSearchTerm(e.target.value)}
         />
         <AutoSuggest
-            suggestions={suggestions}
-            onSuggestionsClearRequested={() => setSuggestions([])}
-            onSuggestionsFetchRequested={({ value }) => {
+          suggestions={suggestions}
+          onSuggestionsClearRequested={() => setSuggestions([])}
+          onSuggestionsFetchRequested={({ value }) => {
               setSuggestions(getSuggestions(value));
             }}
-            onSuggestionSelected={(event, {suggestionValue}) => {
+          onSuggestionSelected={(event, {suggestionValue}) => {
                 setCountry(suggestionValue);
             }}
-            shouldRenderSuggestions={shouldRenderSuggestions}
-            getSuggestionValue={suggestion => suggestion.name}
-            renderSuggestion={suggestion => <span>{suggestion.name}</span>}
-            inputProps={{
+          shouldRenderSuggestions={shouldRenderSuggestions}
+          getSuggestionValue={suggestion => suggestion.name}
+          renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+          inputProps={{
               placeholder: "Country name",
-              value: value,
+              value,
               onChange: (_, { newValue, method }) => {
                 setValue(newValue)
               }
             }}
-            highlightFirstSuggestion={true}
-          />
+          highlightFirstSuggestion
+        />
       </div>
       { loading ? (
         <span>Loading...</span>
       )
       : (
-        <div className="uni-list-container mt-3">
+        <>
+        <div className="mt-3 search-result-header pl-1">
+          <div>{searchTermHeader}</div>
+          <small>{universities.length} results</small>
+        </div>
+        <div className="uni-list-container">
           <UniversityList universities={top20} />
           <div>
-            <a href="#"
+            <a
+              href="#"
               disabled={currentPage <= 1}
               onClick={(e) => {
                 e.preventDefault();
                 if(currentPage > 1)
                   setCurrentPage(currentPage - 1);
-              }}>Previous Page</a>
-            <a href="#"
+              }}
+            >Previous Page
+            </a>
+            <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 if((currentPage + 1) < maxPages)
                   setCurrentPage(currentPage + 1);
-                console.log(currentPage, maxPages)
-              }}>Next Page</a>
+              }}
+            >Next Page
+            </a>
           </div>
         </div>
-        )
-      }
+        </>
+        )}
 
     </div>
   );

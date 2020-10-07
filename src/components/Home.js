@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import universitiesJson from '../data/universities.json';
-import popularJson from '../data/popularCountries.json';
 import { Button, InputGroup } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
+import universitiesJson from '../data/universities.json';
+import popularJson from '../data/popularCountries.json';
 
 import './home.scss';
 
@@ -24,12 +24,13 @@ const Home = () => {
 
   return (
     <div className="main-container">
-      <div  className="mb-5 mt-5">
-        <div>
+      <div className="mb-5 mt-5 search-box-wrapper">
+        <h3 className="search-box-header">
           Find your favourite University
-        </div>
+        </h3>
+        <div>
         <InputGroup className="mb-3">
-            <input
+          <input
             type="text"
             className="form-control"
             placeholder="Search university..."
@@ -40,15 +41,15 @@ const Home = () => {
             <Button variant="primary" onClick={handleSearchClick}>search</Button>
           </InputGroup.Append>
         </InputGroup>
-        <div>
         </div>
       </div>
+
       <h5>Top Countries</h5>
       <ul className="country-list">
         {
           popularJson.map(uni => (
             <li className="country-list-item">
-              <img src={uni.image}/>
+              <img src={uni.image} />
               <a className="country-list-link" href={`/search?country=${uni.name}`}>{uni.name}</a>
             </li>
           ))

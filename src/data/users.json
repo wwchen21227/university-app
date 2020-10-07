@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "tester@test.com"
+    },
+    {
+      "email": "tester2@test.com",
+      "id": "1PwCPum"
+    }
+  ]
+}
