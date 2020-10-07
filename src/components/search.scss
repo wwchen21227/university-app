@@ -28,3 +28,55 @@
     }
   }
 }
+
+.search-container{
+  position: relative;
+  display: flex;
+
+  > input {
+    transition: width .3s;
+    width: 25%;
+    &:focus{
+      width: 50%;
+    }
+  }
+
+  .react-autosuggest__container{
+    width: 50%;
+    > input {
+      padding: .375rem .75rem;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      &:focus{
+        width: 80%;
+      }
+    }
+
+  }
+
+  .react-autosuggest__suggestions-container--open {
+    display: block;
+    position: absolute;
+    top: 38px;
+    width: 300px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 2;
+
+    li {
+      padding: 5px 15px;
+
+      &:hover{
+        background-color: #f1f1f1;
+      }
+    }
+  }
+
+}
