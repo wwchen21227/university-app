@@ -1,0 +1,42 @@
+[
+  {
+   "name": "United States",
+   "code": "US",
+   "image": "https://www-media.stanford.edu/wp-content/uploads/2017/06/20191526/stanford-share.jpg"
+  },
+  {
+    "name": "United Kingdom",
+    "code": "GB",
+    "image": "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2019/12/oxford-1576245233.jpg"
+   },
+   {
+    "name": "Australia",
+    "code": "AU",
+    "image": "https://www.studyoptions.com/sites/default/files/styles/mega_image/public/universities/university-melbourne/university-melbourne-ga002826.jpg?itok=WOkG28Yd"
+   },
+   {
+    "name": "Canada",
+    "code": "CA",
+    "image": "https://torontostoreys.com/wp-content/uploads/2020/05/rsz_campus-347285_1280-770x385.jpg"
+   },
+   {
+    "name": "Singapore",
+    "code": "SG",
+    "image": "https://image.cnbcfm.com/api/v1/image/102743255-nus_u_town_small.jpg?v=1433832337&w=678&h=381"
+   },
+   {
+    "name": "China",
+    "code": "CU",
+    "image": "https://amgenscholars.com/wp-content/uploads/2018/09/photo-tsinghua.jpg"
+   },
+   {
+    "name": "India",
+    "code": "IN",
+    "image": "https://images.newindianexpress.com/uploads/user/imagelibrary/2019/1/10/w900X450/IISc_Bengaluru.jpg"
+   },
+   {
+    "name": "Indonesia",
+    "code": "ID",
+    "image": "https://img.jakpost.net/c/2019/09/20/2019_09_20_79750_1568973128._large.jpg"
+   }
+]

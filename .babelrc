@@ -12,6 +12,11 @@
           "customAxios": "./src/apiUtils/customAxios"
         }
      }
+    ],
+    ["@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
     ]
   ],
   "env": {
