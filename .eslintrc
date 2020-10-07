@@ -1,0 +1,48 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["react", "prettier", "module-resolver"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": ["off"],
+    "react/jsx-fragments": ["off", "element"],
+    "prefer-promise-reject-errors": ["off"],
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": ["off"],
+    "no-return-assign": ["off"],
+    "react/prop-types": ["off"],
+    "no-console": "off",
+    "jsx-a11y/mouse-events-have-key-events": "off",
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "react/no-array-index-key": ["off"],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "module-resolver/use-alias": 2,
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "import/no-unresolved": "off"
+  }
+}

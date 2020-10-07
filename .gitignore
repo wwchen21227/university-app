@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.idea/
+.vscode/
+node_modules/
+build
+.DS_Store
+*.tgz
+npm-debug.log*
+.npm/
+#env/.env.production - enabled this line when there is a sensitive information
+coverage/
+certs/
