@@ -33,6 +33,7 @@ export const UniversityNameSearch = ({
         <FontAwesomeIcon className="icon" icon={faSearch} />
         <FormControl
           type="text"
+          name="searchTerm"
           className="form-control"
           placeholder="Search university..."
           value={searchTerm}
@@ -63,3 +64,6 @@ export const NoResult = ({
   </div>
 );
 
+export const CountrySearch = () => {
+
+};

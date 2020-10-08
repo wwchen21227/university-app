@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
-
 import AutoSuggest from 'react-autosuggest';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,13 +7,10 @@ import SearchBox from '../common/SearchBox';
 import SearchResult from './SearchResult';
 import { UniversityNameSearch } from '../common';
 import universitiesJson from '../../data/universities.json';
-
+import countriesJson from '../../data/countries.json';
 import { searchUniversity } from '../api';
 
 import './search.scss';
-
-import countriesJson from '../../data/countries.json';
-
 
 const RENDER_SUGGESTIONS_BY_DEFAULT = true;
 

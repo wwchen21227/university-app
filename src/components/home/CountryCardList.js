@@ -15,13 +15,13 @@ const CountryListItem = ({ imageUrl, name }) => (
 const CountryList = ({ countries }) => (
   <ul className="country-list">
     {
-      countries.map(country => (
+      countries.map((country, index) => (
         <CountryListItem
+          key={index}
           imageUrl={country.image}
           name={country.name}
         />
-      )
-      )
+      ))
     }
   </ul>
 );

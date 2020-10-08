@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { getFirstItemOrDefault } from 'utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,7 +32,7 @@ const WebsiteLinks = ({ links, firstLinkOnly }) => (
   <ul>
     {
       links.slice(0, (firstLinkOnly ? 1 : links.length))
-      .map((link) => WebsiteLinkItem({link, text: link}))
+      .map((link, index) => <WebsiteLinkItem key={index} link={link} text={link}/>)
     }
   </ul>
 );
@@ -54,8 +55,8 @@ const UniversityCard = ({ university }) => (
   </Card>
 );
 
-const ResultListItem = ({ key, result }) => (
-  <li key={key} className="result-list-item">
+const ResultListItem = ({ result }) => (
+  <li className="result-list-item">
     <UniversityCard university={result} />
   </li>
 );
@@ -116,5 +117,20 @@ const SearchResult = ({
       )}
   </>
   );
+
+SearchResult.propTypes = {
+  searchTerm: PropTypes.string,
+  country: PropTypes.string,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+  maxPages: PropTypes.number.isRequired,
+  totalResults: PropTypes.number.isRequired
+};
+
+SearchResult.defaultProps = {
+  searchTerm: '',
+  country: ''
+};
 
 export default SearchResult;

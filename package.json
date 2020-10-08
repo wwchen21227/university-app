@@ -26,9 +26,6 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/public/"
-    ],
-    "setupFiles": [
-      "jest-canvas-mock"
     ]
   },
   "husky": {

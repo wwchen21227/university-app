@@ -12,8 +12,15 @@ ul{
   padding: 0;
 }
 
-a:hover{
+a, .btn-link{
+  color:#00d098;
+}
+
+a:hover,
+.btn-link:hover{
   text-decoration: none;
+  color:#00d098;
+  opacity: 0.8;
 }
 
 .main-container{
@@ -29,20 +36,27 @@ a:hover{
 .navbar{
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px ;
   background-color: #fff;
+
   .brand-name{
     color: #4373FC;
   }
+
   .navbar-brand{
     position: relative;
   }
+
   .icon{
     width: 25px !important;
       height: 25px !important;
       position: absolute;
       transform: rotate3d(1, 1, 1, 45deg);
-      top: 1px;
-      right: -23px;
-      color: cornflowerblue;
+      top: 2px;
+      right: -24px;
+      color: rgba(0,0,0,0.65);
+  }
+
+  .nav-link.active {
+    color: #00d098 !important;
   }
 }
 
@@ -52,8 +66,5 @@ a:hover{
   width: 14px !important;
   height: 14px !important;
 }
-// input.form-control{
-//   height: auto;
-//   padding: 10px;
-// }
+
 

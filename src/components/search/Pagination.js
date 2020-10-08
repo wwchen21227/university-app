@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
@@ -34,20 +35,20 @@ const Pagination = ({
       setCurrentPage(currentPage + 1);
   };
 
-  const disabledPrevButton = currentPage <= 1;
-  const disabledNextButton = currentPage >= maxPages;
+  const disabledPrevBtn = currentPage <= 1;
+  const disabledNextBtn = currentPage >= maxPages;
 
   return (
     <div className="paging-container">
       <PagingButton
-        disabled={disabledPrevButton}
+        disabled={disabledPrevBtn}
         handleClick={handlePreviousClick}
       >
         <FontAwesomeIcon className="icon" icon={faAngleLeft} />
         Previous Page
       </PagingButton>
       <PagingButton
-        disabled={disabledNextButton}
+        disabled={disabledNextBtn}
         handleClick={handleNextClick}
       >
         Next Page
@@ -55,6 +56,12 @@ const Pagination = ({
       </PagingButton>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+  maxPages: PropTypes.number.isRequired
 };
 
 export default Pagination;
