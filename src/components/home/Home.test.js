@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -17,11 +17,11 @@ jest.mock('react-router-dom', () => ({
 
 describe('Home', () => {
   it('should render without crash', () => {
-    render(<Router><Home/></Router>);
+    render(<Router><Home /></Router>);
   });
 
   it('should work correctly', async () => {
-    render(<Router><Home/></Router>);
+    render(<Router><Home /></Router>);
 
     expect(screen.getByText(/Find your favourite University/i)).toBeInTheDocument();
 

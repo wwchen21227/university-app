@@ -32,7 +32,7 @@ const WebsiteLinks = ({ links, firstLinkOnly }) => (
   <ul>
     {
       links.slice(0, (firstLinkOnly ? 1 : links.length))
-      .map((link, index) => <WebsiteLinkItem key={index} link={link} text={link}/>)
+      .map((link, index) => <WebsiteLinkItem key={index} link={link} text={link} />)
     }
   </ul>
 );

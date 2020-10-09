@@ -41,7 +41,7 @@ const CountryCardList = ({
 
 CountryCardList.propTypes = {
   title: PropTypes.string,
-  countries: PropTypes.arrayOf(PropTypes.object)
+  countries: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 CountryCardList.defaultProps = {

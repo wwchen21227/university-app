@@ -11,7 +11,7 @@ describe('Pagination', () => {
       maxPages: 2
     };
 
-    render(<Pagination {...fakeProps}/>);
+    render(<Pagination {...fakeProps} />);
   });
 
   it('should show paging correctly', () => {
@@ -21,7 +21,7 @@ describe('Pagination', () => {
       maxPages: 2
     };
 
-    render(<Pagination {...fakeProps}/>);
+    render(<Pagination {...fakeProps} />);
 
     expect(screen.getByText(/Previous Page/i)).toBeInTheDocument();
     expect(screen.getByText(/Previous Page/i)).toBeDisabled();

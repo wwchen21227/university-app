@@ -1,33 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
-import AutoSuggest from 'react-autosuggest';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import SearchBox from '../common/SearchBox';
 import SearchResult from './SearchResult';
-import { UniversityNameSearch } from '../common';
+import { UniversitySearch, CountrySearch, WithLoading } from '../common';
 import universitiesJson from '../../data/universities.json';
-import countriesJson from '../../data/countries.json';
 import { searchUniversity } from '../api';
 
 import './search.scss';
-
-const RENDER_SUGGESTIONS_BY_DEFAULT = true;
-
-const getSuggestions = (value) => {
-  return countriesJson.filter(country =>
-    country.name.toLowerCase().includes(value.trim().toLowerCase())
-  );
-}
-
-const shouldRenderSuggestions = () => RENDER_SUGGESTIONS_BY_DEFAULT;
-
-const renderInputComponent = inputProps => (
-  <div className="search-input-wrapper ">
-    <FontAwesomeIcon className="icon" icon={faMapMarkerAlt} />
-    <input {...inputProps} />
-  </div>
-);
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -35,20 +14,18 @@ const useQuery = () => {
 
 const SEARCH_DELAY_TIME_IN_MS = 350;
 const RESULT_LIMIT = 15;
+const DEFAULT_PAGE = 1;
 
 const Search = () => {
   const query = useQuery();
   let timerId = null;
 
   const [maxPages, setMaxPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
 
   const [originUniversities, setOriginUniversities] = useState([]);
   const [universities, setUniversities] = useState([]);
-
   const [searchTerm, setSearchTerm] = useState(query.get('name') ?? '');
-  const [suggestions, setSuggestions] = useState([]);
-  const [value, setValue] = useState(query.get('country') ?? '');
   const [country, setCountry] = useState(query.get('country') ?? '');
   const [loading, setLoading] = useState(true);
   const [firstRender, setFirstRender] = useState(true);
@@ -66,6 +43,7 @@ const Search = () => {
 
     setOriginUniversities(data);
     setUniversities(data);
+    setCurrentPage(DEFAULT_PAGE);
 
     setLoading(false);
   };
@@ -96,52 +74,28 @@ const Search = () => {
   return (
     <div className="main-container search-page-container">
       <SearchBox title="Search your favourite University">
-        <UniversityNameSearch
+        <UniversitySearch
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           autoSearch
         />
-
-        <AutoSuggest
-          suggestions={suggestions}
-          onSuggestionsClearRequested={() => setSuggestions([])}
-          onSuggestionsFetchRequested={({ value: sValue }) => {
-              setSuggestions(getSuggestions(sValue));
-            }}
-          onSuggestionSelected={(_, { suggestionValue }) => {
-              setCountry(suggestionValue);
-            }}
-          shouldRenderSuggestions={shouldRenderSuggestions}
-          getSuggestionValue={suggestion => suggestion.name}
-          renderSuggestion={suggestion => <span>{suggestion.name}</span>}
-          inputProps={{
-              placeholder: "Country",
-              value,
-              onChange: (_, { newValue }) => {
-                setValue(newValue);
-              }
-            }}
-          renderInputComponent={renderInputComponent}
-          highlightFirstSuggestion
+        <CountrySearch
+          country={country}
+          setCountry={setCountry}
         />
       </SearchBox>
 
-      { loading ? (
-        <span>Loading...</span>
-      )
-      :
-      (
+      <WithLoading isLoading={loading}>
         <SearchResult
-          searchTerm={searchTerm}
-          country={country}
-          results={results}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          maxPages={maxPages}
-          totalResults={originUniversities.length}
-        />
-      )}
-
+            searchTerm={searchTerm}
+            country={country}
+            results={results}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            maxPages={maxPages}
+            totalResults={originUniversities.length}
+          />
+      </WithLoading>
     </div>
   );
 };

@@ -9,7 +9,7 @@ describe('CountryCardList', () => {
       countries: []
     };
 
-    render(<CountryCardList {...fakeProps}/>);
+    render(<CountryCardList {...fakeProps} />);
   });
 
   it('should works correctly', () => {
@@ -28,7 +28,7 @@ describe('CountryCardList', () => {
       ]
     };
 
-    render(<CountryCardList {...fakeProps}/>);
+    render(<CountryCardList {...fakeProps} />);
 
     expect(screen.getByText(/Top Countries/i)).toBeInTheDocument();
 

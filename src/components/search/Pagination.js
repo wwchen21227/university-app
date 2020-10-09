@@ -24,9 +24,9 @@ const Pagination = ({
   maxPages
 }) => {
   const handlePreviousClick = (e) => {
-      e.preventDefault();
-      if (currentPage > 1)
-        setCurrentPage(currentPage - 1);
+    e.preventDefault();
+    if (currentPage > 1)
+      setCurrentPage(currentPage - 1);
   };
 
   const handleNextClick = (e) => {

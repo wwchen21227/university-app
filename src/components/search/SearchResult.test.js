@@ -13,7 +13,7 @@ describe('SearchResult', () => {
       totalResults: 12
     };
 
-    render(<SearchResult {...fakeProps}/>);
+    render(<SearchResult {...fakeProps} />);
   });
 
   it('should show no result', () => {
@@ -25,7 +25,7 @@ describe('SearchResult', () => {
       totalResults: 0
     };
 
-    render(<SearchResult {...fakeProps}/>);
+    render(<SearchResult {...fakeProps} />);
 
     expect(screen.getByText(/No result found./i)).toBeInTheDocument();
   });
@@ -52,7 +52,7 @@ describe('SearchResult', () => {
       totalResults: 1
     };
 
-    render(<SearchResult {...fakeProps}/>);
+    render(<SearchResult {...fakeProps} />);
 
     expect(screen.getByText(/Aventis School of Management/i)).toBeInTheDocument();
     expect(screen.getByText(/Singapore/i)).toBeInTheDocument();

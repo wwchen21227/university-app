@@ -8,12 +8,12 @@ import Search from './Search';
 describe('Search', () => {
   it('should render without crash', () => {
     window.scrollTo = jest.fn();
-    render(<Router><Search/></Router>);
+    render(<Router><Search /></Router>);
   });
 
   it('should work correctly', async () => {
     window.scrollTo = jest.fn();
-    render(<Router><Search/></Router>);
+    render(<Router><Search /></Router>);
 
     expect(screen.getByText(/Search your favourite University/i)).toBeInTheDocument();
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();

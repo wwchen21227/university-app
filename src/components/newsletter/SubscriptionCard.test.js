@@ -12,7 +12,7 @@ describe('SubscriptionCard', () => {
       handleSubmit: jest.fn()
     };
 
-    render(<SubscriptionCard {...fakeProps}/>);
+    render(<SubscriptionCard {...fakeProps} />);
   });
 
   it('should show paging correctly', () => {
@@ -22,7 +22,7 @@ describe('SubscriptionCard', () => {
       handleSubmit: jest.fn()
     };
 
-    render(<SubscriptionCard {...fakeProps}/>);
+    render(<SubscriptionCard {...fakeProps} />);
 
     expect(screen.getByText(/Let's keep in touch/i)).toBeInTheDocument();
     expect(screen.getByText(/Subscribe to keep up with fresh University news and exciting updates. We promise not to spam you./i)).toBeInTheDocument();
