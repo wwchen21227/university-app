@@ -1,4 +1,10 @@
+$xsmall-screen: 460px;
+$small-screen: 560px;
+$medium-screen: 780px;
+$big-screen: 1200px;
+
 .home-page-container{
+
   .search-box-wrapper{
     max-width: 640px;
     margin: 0 auto;
@@ -10,53 +16,103 @@
       color: rgba(0,0,0,0.8);
       font-size: 2rem;
     }
+
+    .input-group-append{
+      width: 30%;
+
+      > button {
+        width: 100%;
+      }
+
+      @media screen and (min-width: $xsmall-screen) {
+        width: 20%;
+      }
+    }
+
+    .search-input-wrapper{
+      width: 70%;
+
+      @media screen and (min-width: $xsmall-screen) {
+        width: 80%;
+      }
+    }
   }
 
-  .search-input-wrapper{
-    width: 88%;
-  }
+  .country-list-wrapper{
+    margin: 0 auto;
 
-  .country-list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    .country-list{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
 
-    &-item{
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      margin: 0 14px 14px 0;
-
-      img{
-        object-fit: cover;
+      &-item{
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 14px 14px 0;
         width: 270px;
         height: 260px;
+        flex: 1 1 20%;
+
+        img{
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+
+        @media screen and (max-width: $big-screen) {
+          flex-basis: 25%;
+        }
+
+        @media screen and (max-width: $medium-screen) {
+          flex-basis: 35%;
+        }
+
+        @media screen and (max-width: $small-screen) {
+          height:200px
+        }
+
+        @media screen and (max-width: $xsmall-screen) {
+          flex-basis: 100%;
+          margin-right: 0;
+        }
+
+        &:nth-child(2n + 2) {
+          @media screen and (max-width: $medium-screen) {
+            margin-right: 0;
+          }
+        }
       }
 
-      &:nth-child(4n+4){
-        margin-right: 0;
+      &-link {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        font-size: 1.5rem;
+        color: #fff;
+        transition: background-color 0.3s;
+
+        &:hover{
+         color: #fff;
+         background-color: rgba(0,0,0,0.15);
+        }
       }
     }
 
-    &-link {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0,0,0,0.3);
-      font-size: 1.5rem;
-      color: #fff;
-      transition: background-color 0.3s;
+    @media screen and (max-width: $big-screen) {
+      max-width: 860px;
+    }
 
-      &:hover{
-       color: #fff;
-       background-color: rgba(0,0,0,0.15);
-      }
+    @media screen and (max-width: $medium-screen) {
+      max-width: 760px;
     }
   }
-
 }
+

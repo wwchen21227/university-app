@@ -33,10 +33,10 @@ const CountryCardList = ({
   title,
   countries
 }) => (
-  <>
+  <div className="country-list-wrapper">
     <CountryListHeader text={title} />
     <CountryList countries={countries} />
-  </>
+  </div>
 );
 
 CountryCardList.propTypes = {

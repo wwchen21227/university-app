@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="main-container home-page-container">
-      <div className="mt-5 mb-5">
+      <div className="mt-4 mb-5">
         <SearchBox title="Find your favourite University">
           <UniversitySearch
             searchTerm={searchTerm}
