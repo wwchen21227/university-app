@@ -11,18 +11,17 @@ BasicImage.propTypes = {
 };
 
 const getLinkNewTabAttrs = (openNewTab) => {
-  return openNewTab ? {
-    target: '_blank',
-    rel: "noreferrer"
-  } : {};
+  return openNewTab
+    ? {
+        target: '_blank',
+        rel: 'noreferrer'
+      }
+    : {};
 };
 
-export const BasicLink = ( { className, url, text, openNewTab } ) => (
-  <a
-    className={className}
-    href={url}
-    {...getLinkNewTabAttrs(openNewTab)}
-  >{text}
+export const BasicLink = ({ className, url, text, openNewTab }) => (
+  <a className={className} href={url} {...getLinkNewTabAttrs(openNewTab)}>
+    {text}
   </a>
 );
 
@@ -43,12 +42,10 @@ export const NoResult = ({
   height = 'auto',
   showIcon = true
 }) => (
-  <div className="no-result no-result--w-bg" style={{height}}>
+  <div className="no-result no-result--w-bg" style={{ height }}>
     <div className="no-result-body">
       {showIcon && <FontAwesomeIcon className="icon" icon={faSadCry} />}
-      <p className="no-result-message">
-        {message}
-      </p>
+      <p className="no-result-message">{message}</p>
     </div>
   </div>
 );
@@ -65,17 +62,8 @@ NoResult.defaultProps = {
   showIcon: true
 };
 
-export const WithLoading = ({
-  isLoading,
-  children
-}) => (
-  <>
-  {isLoading ?
-    (<span>Loading...</span>)
-  :
-    children
-  }
-  </>
+export const WithLoading = ({ isLoading, children }) => (
+  <>{isLoading ? <span>Loading...</span> : children}</>
 );
 
 WithLoading.propTypes = {

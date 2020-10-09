@@ -1,12 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import {
-  BasicImage,
-  BasicLink,
-  NoResult,
-  WithLoading
-} from './common';
+import { BasicImage, BasicLink, NoResult, WithLoading } from './common';
 
 describe('Common Components', () => {
   describe('BasicImage', () => {
@@ -33,14 +28,17 @@ describe('Common Components', () => {
 
   describe('NoResult', () => {
     it('should render without crash', () => {
-      render(<NoResult/>);
+      render(<NoResult />);
     });
   });
 
   describe('WithLoading', () => {
     it('should render without crash', () => {
-      render(<WithLoading isLoading={true}><span>Hello</span></WithLoading>);
+      render(
+        <WithLoading isLoading>
+          <span>Hello</span>
+        </WithLoading>
+      );
     });
   });
-
 });

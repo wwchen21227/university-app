@@ -20,10 +20,10 @@ a:hover,
 
 .navbar{
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px ;
-  background-color: #fff;
+  background-color: $navbar-bg-color;
 
   .brand-name{
-    color: #4373FC;
+    color: $brand-color;
   }
 
   .navbar-brand{
@@ -32,12 +32,12 @@ a:hover,
 
   .icon{
     width: 25px !important;
-      height: 25px !important;
-      position: absolute;
-      transform: rotate3d(1, 1, 1, 45deg);
-      top: 2px;
-      right: -24px;
-      color: rgba(0,0,0,0.65);
+    height: 25px !important;
+    position: absolute;
+    transform: rotate3d(1, 1, 1, 45deg);
+    top: 2px;
+    right: -24px;
+    color: rgba(0,0,0,0.65);
   }
 
   .nav-link.active {
@@ -46,16 +46,15 @@ a:hover,
 }
 
 body {
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-family: $body-font-family;
   font-size: 16px;
   line-height: 1.5;
-  color: #24292e;
-  background-color: #f9f9f9;
+  color: $body-font-color;
+  background-color: $body-bg-color;
 }
 
 .main-container{
   max-width: 760px;
-  // max-width: 1140px;
   margin: 56px auto 0;
   overflow: auto;
 
@@ -73,12 +72,11 @@ body {
 }
 
 .icon{
-  color: rgba(0,0,0,0.3);
+  color: $black-color-dimmer-7;
   margin-right: 10px;
   width: 14px !important;
   height: 14px !important;
 }
-
 
 .search-input-wrapper {
   width: 100%;
@@ -92,5 +90,33 @@ body {
 
   input{
     padding-left: 32px;
+  }
+}
+
+/*No result component*/
+.no-result{
+  display: flex;
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  justify-content: center;
+  align-items: center;
+
+  &-body {
+    text-align: center;
+    .icon {
+      width: 40px !important;
+      height: 40px !important;
+    }
+  }
+
+  &-message{
+    color: $black-color-dimmer-6;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  &--w-bg {
+    background-color: #fff;
   }
 }

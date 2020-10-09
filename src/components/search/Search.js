@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import SearchBox from '../common/SearchBox';
 import SearchResult from './SearchResult';
 import { UniversitySearch, CountrySearch, WithLoading } from '../common';
@@ -35,7 +35,7 @@ const Search = () => {
 
     let data = universitiesJson;
 
-    if(name !== '' || countryName !== ''){
+    if (name !== '' || countryName !== '') {
       data = await searchUniversity(name, countryName);
     }
 
@@ -49,9 +49,12 @@ const Search = () => {
   };
 
   useEffect(() => {
-    timerId = setTimeout(() => {
-      fetchData(searchTerm, country);
-    }, firstRender ? 0 : SEARCH_DELAY_TIME_IN_MS);
+    timerId = setTimeout(
+      () => {
+        fetchData(searchTerm, country);
+      },
+      firstRender ? 0 : SEARCH_DELAY_TIME_IN_MS
+    );
 
     return () => clearTimeout(timerId);
   }, [searchTerm, country]);
@@ -61,8 +64,8 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
-    const startAt = firstRender ? 0 : ((currentPage - 1) * RESULT_LIMIT);
-    const endAt = firstRender ? RESULT_LIMIT : (startAt + RESULT_LIMIT);
+    const startAt = firstRender ? 0 : (currentPage - 1) * RESULT_LIMIT;
+    const endAt = firstRender ? RESULT_LIMIT : startAt + RESULT_LIMIT;
 
     setUniversities(originUniversities.slice(startAt, endAt));
 
@@ -79,26 +82,22 @@ const Search = () => {
           setSearchTerm={setSearchTerm}
           autoSearch
         />
-        <CountrySearch
-          country={country}
-          setCountry={setCountry}
-        />
+        <CountrySearch country={country} setCountry={setCountry} />
       </SearchBox>
 
       <WithLoading isLoading={loading}>
         <SearchResult
-            searchTerm={searchTerm}
-            country={country}
-            results={results}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            maxPages={maxPages}
-            totalResults={originUniversities.length}
-          />
+          searchTerm={searchTerm}
+          country={country}
+          results={results}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          maxPages={maxPages}
+          totalResults={originUniversities.length}
+        />
       </WithLoading>
     </div>
   );
 };
 
 export default Search;
-

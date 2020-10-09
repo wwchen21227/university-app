@@ -12,7 +12,7 @@ RUN npm install
 
 RUN npm install -g json-server
 
-EXPOSE 3000
+EXPOSE 3000 5000
 
 # start app
 CMD ["npm", "start"]

@@ -10,7 +10,7 @@
     .search-box-header{
       font-weight: 300;
       margin-bottom: 2rem;
-      color: rgba(0,0,0,0.8);
+      color: $black-color-dimmer-2;
       font-size: 2rem;
     }
 
@@ -91,13 +91,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(0,0,0,0.3);
+        background-color: $black-color-dimmer-7;
         font-size: 1.5rem;
-        color: #fff;
+        color: $white-color;
         transition: background-color 0.3s;
 
         &:hover{
-         color: #fff;
+         color: $white-color;
          background-color: rgba(0,0,0,0.15);
         }
       }
