@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { BasicImage, BasicLink } from '../common';
 
 const CountryListItem = ({ imageUrl, name }) => (
@@ -29,7 +30,7 @@ const CountryList = ({ countries }) => (
 const CountryListHeader = ( { text } ) => <h5>{text}</h5>;
 
 const CountryCardList = ({
-  title = 'Top Countries',
+  title,
   countries
 }) => (
   <>
@@ -37,5 +38,14 @@ const CountryCardList = ({
     <CountryList countries={countries} />
   </>
 );
+
+CountryCardList.propTypes = {
+  title: PropTypes.string,
+  countries: PropTypes.arrayOf(PropTypes.object)
+};
+
+CountryCardList.defaultProps = {
+  title: 'Top Countries'
+};
 
 export default CountryCardList;

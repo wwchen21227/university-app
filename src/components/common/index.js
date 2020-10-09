@@ -33,7 +33,7 @@ export const UniversityNameSearch = ({
         <FontAwesomeIcon className="icon" icon={faSearch} />
         <FormControl
           type="text"
-          name="searchTerm"
+          aria-label="Search university"
           className="form-control"
           placeholder="Search university..."
           value={searchTerm}
