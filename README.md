@@ -75,7 +75,7 @@ A list of all the countries data for auto-suggestion country search control.
 Personal picked top 8 countries for building the home page UI. :grinning:
 
 **universities.json**
-The original data source of the University domain. I downloaded this because i found to fetch all the records from the api is a bit too expensive and slow. Therefore, i added a logic hack to the app if there isn't search by university name or country, the app will be using the local data (universities.json).
+The original data source of the University domain. I downloaded this because i found fetching all the records from the api is a bit too expensive and slow. Therefore, i added a logic hack to the app if there isn't search by university name or country, the app will be using the local data (universities.json).
 
 **users.json**
 The db file for json-server to save newsletter subscriber email address.
