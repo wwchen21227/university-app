@@ -25,7 +25,7 @@ const InfoWrapper = ({ children }) => (
 const WebsiteLinkItem = ({ link, text }) => (
   <li>
     <FontAwesomeIcon className="icon" icon={faLink} />
-    <BasicLink className="card-link" url={link} text={text} openNewTab="true" />
+    <BasicLink className="card-link" url={link} text={text} openNewTab />
   </li>
 );
 
