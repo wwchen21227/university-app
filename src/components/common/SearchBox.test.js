@@ -9,7 +9,11 @@ describe('SearchBox', () => {
       title: ''
     };
 
-    render(<SearchBox {...fakeProps}><div>Search here</div></SearchBox>);
+    render(
+      <SearchBox {...fakeProps}>
+        <div>Search here</div>
+      </SearchBox>
+    );
   });
 
   it('should works correctly', async () => {
@@ -17,9 +21,12 @@ describe('SearchBox', () => {
       title: 'Search university now'
     };
 
-    render(<SearchBox {...fakeProps}><div>Search here</div></SearchBox>);
+    render(
+      <SearchBox {...fakeProps}>
+        <div>Search here</div>
+      </SearchBox>
+    );
 
     expect(screen.getByText(/Search university now/i)).toBeInTheDocument();
   });
-
 });

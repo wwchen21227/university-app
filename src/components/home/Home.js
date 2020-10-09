@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import popularJson from '../../data/popularCountries.json';
 import TopCountryList from './CountryCardList';
 import SearchBox from '../common/SearchBox';
@@ -28,10 +28,7 @@ const Home = () => {
         </SearchBox>
       </div>
 
-      <TopCountryList
-        title="Top Countries"
-        countries={popularJson}
-      />
+      <TopCountryList title="Top Countries" countries={popularJson} />
     </div>
   );
 };

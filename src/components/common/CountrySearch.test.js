@@ -28,5 +28,4 @@ describe('CountrySearch', () => {
     userEvent.type(txtSearch, 'indonesia');
     expect(txtSearch).toHaveValue('indonesia');
   });
-
 });

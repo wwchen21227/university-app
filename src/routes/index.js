@@ -1,6 +1,12 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { BrowserRouter as Router, Switch, Link, Route, NavLink } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Link,
+  Route,
+  NavLink
+} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import Home from '../components/home';

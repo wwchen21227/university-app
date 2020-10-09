@@ -9,25 +9,30 @@ import './newsletter.scss';
 const AlertType = {
   NONE: '',
   ERROR: 'danger',
-  SUCCESS: 'success',
+  SUCCESS: 'success'
 };
+
+const TIME_TO_RESET_ALERT = 20000; // 20 seconds
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [agreement, setAgreement] = useState(false);
-  const [alertType, setAlertType] = useState(AlertType.NONE);
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alert, setAlert] = useState(null);
 
   const isValid = () => {
     if (!agreement) {
-      setAlertMessage('We have to get your agreement before subscribe.');
-      setAlertType(AlertType.ERROR);
+      setAlert({
+        type: AlertType.ERROR,
+        message: 'We have to get your agreement before subscribe.'
+      });
       return false;
     }
 
-    if(!validateEmail(email)) {
-      setAlertMessage('Please enter a valid email address.');
-      setAlertType(AlertType.ERROR);
+    if (!validateEmail(email)) {
+      setAlert({
+        type: AlertType.ERROR,
+        message: 'Please enter a valid email address.'
+      });
       return false;
     }
 
@@ -37,15 +42,19 @@ const Newsletter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(!isValid()) return;
+    if (!isValid()) return;
 
-    createSubscriber({email});
+    createSubscriber({ email });
 
-    setAlertType(AlertType.SUCCESS);
-    setAlertMessage(`Thank you for subscribed. We have just sent the latest newsletter to ${email}.`);
+    setAlert({
+      type: AlertType.SUCCESS,
+      message: `Thank you for subscribed. We have just sent the latest newsletter to ${email}.`
+    });
 
     setEmail('');
     setAgreement(false);
+
+    setTimeout(() => setAlert(null), TIME_TO_RESET_ALERT);
   };
 
   return (
@@ -59,13 +68,12 @@ const Newsletter = () => {
           handleSubmit={handleSubmit}
         />
 
-        {alertType !== AlertType.NONE && (
-        <Alert variant={alertType} className="mt-3">
-          {alertMessage}
-        </Alert>
-         )}
+        {alert && (
+          <Alert variant={alert.type} className="mt-3">
+            {alert.message}
+          </Alert>
+        )}
       </div>
-
     </div>
   );
 };

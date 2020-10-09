@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AutoSuggest from 'react-autosuggest';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,24 +8,21 @@ import countriesJson from '../../data/countries.json';
 const RENDER_SUGGESTIONS_BY_DEFAULT = true;
 
 const getSuggestions = (value) => {
-  return countriesJson.filter(country =>
+  return countriesJson.filter((country) =>
     country.name.toLowerCase().includes(value.trim().toLowerCase())
   );
-}
+};
 
 const shouldRenderSuggestions = () => RENDER_SUGGESTIONS_BY_DEFAULT;
 
-const renderInputComponent = inputProps => (
+const renderInputComponent = (inputProps) => (
   <div className="search-input-wrapper ">
     <FontAwesomeIcon className="icon" icon={faMapMarkerAlt} />
     <input {...inputProps} aria-label="Search country" />
   </div>
 );
 
-const CountrySearch = ({
-  country,
-  setCountry
-}) => {
+const CountrySearch = ({ country, setCountry }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [value, setValue] = useState(country ?? '');
 
@@ -40,10 +37,10 @@ const CountrySearch = ({
         setCountry(suggestionValue);
       }}
       shouldRenderSuggestions={shouldRenderSuggestions}
-      getSuggestionValue={suggestion => suggestion.name}
-      renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+      getSuggestionValue={(suggestion) => suggestion.name}
+      renderSuggestion={(suggestion) => <span>{suggestion.name}</span>}
       inputProps={{
-        placeholder: "Country",
+        placeholder: 'Country',
         value,
         onChange: (_, { newValue }) => {
           setValue(newValue);
@@ -52,7 +49,7 @@ const CountrySearch = ({
       renderInputComponent={renderInputComponent}
       highlightFirstSuggestion
     />
-    );
+  );
 };
 
 CountrySearch.propTypes = {

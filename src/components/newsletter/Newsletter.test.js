@@ -6,15 +6,25 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Newsletter from './Newsletter';
 import * as api from '../api';
 
-const mockCreateSubscriber = jest.spyOn(api, 'createSubscriber').mockImplementation(() => Promise.resolve({}));
+const mockCreateSubscriber = jest
+  .spyOn(api, 'createSubscriber')
+  .mockImplementation(() => Promise.resolve({}));
 
 describe('Newsletter', () => {
   it('should render without crash', () => {
-    render(<Router><Newsletter /></Router>);
+    render(
+      <Router>
+        <Newsletter />
+      </Router>
+    );
   });
 
   it('should work correctly', async () => {
-    render(<Router><Newsletter /></Router>);
+    render(
+      <Router>
+        <Newsletter />
+      </Router>
+    );
 
     expect(screen.getByText(/Let's keep in touch/i)).toBeInTheDocument();
 
@@ -33,19 +43,24 @@ describe('Newsletter', () => {
 
     userEvent.click(subscribeBtn);
 
-    expect(screen.getByText(/We have to get your agreement before subscribe./i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/We have to get your agreement before subscribe./i)
+    ).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('checkbox'));
     expect(screen.getByRole('checkbox')).toHaveProperty('checked', true);
 
     userEvent.click(subscribeBtn);
 
-    expect(screen.getByText(/Thank you for subscribed. We have just sent the latest newsletter to test@hotmail.com./i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Thank you for subscribed. We have just sent the latest newsletter to test@hotmail.com./i
+      )
+    ).toBeInTheDocument();
 
     expect(mockCreateSubscriber).toBeCalledTimes(1);
 
     expect(txtEmail).toHaveValue('');
     expect(screen.getByRole('checkbox')).toHaveProperty('checked', false);
   });
-
 });

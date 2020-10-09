@@ -3,37 +3,37 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { getFirstItemOrDefault } from 'utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faGlobe, faLink } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMapMarkerAlt,
+  faGlobe,
+  faLink
+} from '@fortawesome/free-solid-svg-icons';
 import Pagination from './Pagination';
 import { BasicLink, NoResult } from '../common';
 
-const InfoDetails = ({text, icon}) => (
+const InfoDetails = ({ text, icon }) => (
   <div>
     <FontAwesomeIcon className="icon" icon={icon} />
     <span>{text}</span>
   </div>
 );
 
-const InfoWrapper = ({ children }) => <div className="d-flex card-info-wrapper">{children}</div>;
+const InfoWrapper = ({ children }) => (
+  <div className="d-flex card-info-wrapper">{children}</div>
+);
 
-const WebsiteLinkItem = ({link, text}) => (
+const WebsiteLinkItem = ({ link, text }) => (
   <li>
     <FontAwesomeIcon className="icon" icon={faLink} />
-    <BasicLink
-      className="card-link"
-      url={link}
-      text={text}
-      target="_blank"
-    />
+    <BasicLink className="card-link" url={link} text={text} openNewTab="true" />
   </li>
 );
 
 const WebsiteLinks = ({ links, firstLinkOnly }) => (
   <ul>
-    {
-      links.slice(0, (firstLinkOnly ? 1 : links.length))
-      .map((link, index) => <WebsiteLinkItem key={index} link={link} text={link} />)
-    }
+    {links.slice(0, firstLinkOnly ? 1 : links.length).map((link, index) => (
+      <WebsiteLinkItem key={index} link={link} text={link} />
+    ))}
   </ul>
 );
 
@@ -43,14 +43,14 @@ const UniversityCard = ({ university }) => (
       <Card.Title>{university.name}</Card.Title>
 
       <InfoWrapper>
-        <InfoDetails text={getFirstItemOrDefault(university.domains)} icon={faGlobe} />
+        <InfoDetails
+          text={getFirstItemOrDefault(university.domains)}
+          icon={faGlobe}
+        />
         <InfoDetails text={university.country} icon={faMapMarkerAlt} />
       </InfoWrapper>
 
-      <WebsiteLinks
-        links={university.web_pages}
-        firstLinkOnly
-      />
+      <WebsiteLinks links={university.web_pages} firstLinkOnly />
     </Card.Body>
   </Card>
 );
@@ -63,9 +63,9 @@ const ResultListItem = ({ result }) => (
 
 const ResultList = ({ results }) => (
   <ul className="result-list">
-    {results.map((result, index) =>
+    {results.map((result, index) => (
       <ResultListItem key={index} result={result} />
-    )}
+    ))}
   </ul>
 );
 
@@ -102,21 +102,20 @@ const SearchResult = ({
       headerText={getSearchTermHeader(searchTerm, country)}
       resultText={`${totalResults} results`}
     />
-    {totalResults === 0 ?
-      (<NoResult />)
-      :
-      (
-        <>
-          <ResultList results={results} />
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            maxPages={maxPages}
-          />
-        </>
-      )}
+    {totalResults === 0 ? (
+      <NoResult />
+    ) : (
+      <>
+        <ResultList results={results} />
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          maxPages={maxPages}
+        />
+      </>
+    )}
   </>
-  );
+);
 
 SearchResult.propTypes = {
   searchTerm: PropTypes.string,

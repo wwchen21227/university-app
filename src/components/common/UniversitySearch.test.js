@@ -28,5 +28,4 @@ describe('UniversitySearch', () => {
     userEvent.type(txtSearch, 'national');
     expect(fakeProps.setSearchTerm).toHaveBeenCalledTimes(8);
   });
-
 });

@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SearchBoxHeader = ({ text }) =>
-  <h3 className="search-box-header">{text}</h3>;
+const SearchBoxHeader = ({ text }) => (
+  <h3 className="search-box-header">{text}</h3>
+);
 
-const SearchBox = ({
-  title,
-  children
-}) => (
+const SearchBox = ({ title, children }) => (
   <div className="search-box-wrapper">
     <SearchBoxHeader text={title} />
     {children}

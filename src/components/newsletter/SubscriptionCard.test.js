@@ -25,18 +25,27 @@ describe('SubscriptionCard', () => {
     render(<SubscriptionCard {...fakeProps} />);
 
     expect(screen.getByText(/Let's keep in touch/i)).toBeInTheDocument();
-    expect(screen.getByText(/Subscribe to keep up with fresh University news and exciting updates. We promise not to spam you./i)).toBeInTheDocument();
-    expect(screen.getByText(/I agree to my email address being stored and used to receive monthly newsletter./i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Subscribe to keep up with fresh University news and exciting updates. We promise not to spam you./i
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /I agree to my email address being stored and used to receive monthly newsletter./i
+      )
+    ).toBeInTheDocument();
 
     expect(screen.getByRole('button')).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeDisabled();
 
     expect(screen.getByRole('checkbox')).toBeInTheDocument();
 
-    expect(screen.getByLabelText('Enter your email address')).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('Enter your email address')
+    ).toBeInTheDocument();
 
     userEvent.type(screen.getByLabelText('Enter your email address'), 't');
     expect(fakeProps.setEmail).toBeCalled();
   });
-
 });

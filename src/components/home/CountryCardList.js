@@ -15,24 +15,19 @@ const CountryListItem = ({ imageUrl, name }) => (
 
 const CountryList = ({ countries }) => (
   <ul className="country-list">
-    {
-      countries.map((country, index) => (
-        <CountryListItem
-          key={index}
-          imageUrl={country.image}
-          name={country.name}
-        />
-      ))
-    }
+    {countries.map((country, index) => (
+      <CountryListItem
+        key={index}
+        imageUrl={country.image}
+        name={country.name}
+      />
+    ))}
   </ul>
 );
 
-const CountryListHeader = ( { text } ) => <h5>{text}</h5>;
+const CountryListHeader = ({ text }) => <h5>{text}</h5>;
 
-const CountryCardList = ({
-  title,
-  countries
-}) => (
+const CountryCardList = ({ title, countries }) => (
   <div className="country-list-wrapper">
     <CountryListHeader text={title} />
     <CountryList countries={countries} />

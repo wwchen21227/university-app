@@ -29,5 +29,4 @@ describe('Pagination', () => {
     expect(screen.getByText(/Next Page/i)).toBeInTheDocument();
     expect(screen.getByText(/Next Page/i)).toBeEnabled();
   });
-
 });

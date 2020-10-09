@@ -16,13 +16,11 @@ const SubscriptionCard = ({
       <FontAwesomeIcon className="icon" icon={faPaperPlane} />
       <Card.Title>Let&apos;s keep in touch</Card.Title>
       <Card.Text className="subscribe-box-message">
-        Subscribe to keep up with fresh University news and exciting updates. <br />
+        Subscribe to keep up with fresh University news and exciting updates.{' '}
+        <br />
         We promise not to spam you.
       </Card.Text>
-      <Form
-        className="mt-4"
-        onSubmit={handleSubmit}
-      >
+      <Form className="mt-4" onSubmit={handleSubmit}>
         <InputGroup className="mb-3">
           <FormControl
             type="textbox"
@@ -36,7 +34,8 @@ const SubscriptionCard = ({
               type="submit"
               variant="primary"
               disabled={email.trim() === ''}
-            >Subscribe
+            >
+              Subscribe
             </Button>
           </InputGroup.Append>
         </InputGroup>
@@ -50,11 +49,10 @@ const SubscriptionCard = ({
             onChange={() => setAgreement(!agreement)}
           />
         </Form.Group>
-
       </Form>
     </Card.Body>
   </Card>
-  );
+);
 
 SubscriptionCard.propTypes = {
   email: PropTypes.string,

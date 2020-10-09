@@ -10,20 +10,29 @@ const mockHistoryPush = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory: () => ({
-    push: mockHistoryPush,
-  }),
+    push: mockHistoryPush
+  })
 }));
-
 
 describe('Home', () => {
   it('should render without crash', () => {
-    render(<Router><Home /></Router>);
+    render(
+      <Router>
+        <Home />
+      </Router>
+    );
   });
 
   it('should work correctly', async () => {
-    render(<Router><Home /></Router>);
+    render(
+      <Router>
+        <Home />
+      </Router>
+    );
 
-    expect(screen.getByText(/Find your favourite University/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Find your favourite University/i)
+    ).toBeInTheDocument();
 
     expect(screen.getByText(/United States/i)).toBeInTheDocument();
     expect(screen.getByText(/Singapore/i)).toBeInTheDocument();

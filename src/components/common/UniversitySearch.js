@@ -20,12 +20,14 @@ const UniversitySearch = ({
           className="form-control"
           placeholder="Search university..."
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       {!autoSearch && (
         <InputGroup.Append>
-          <Button type="submit" variant="primary">Search</Button>
+          <Button type="submit" variant="primary">
+            Search
+          </Button>
         </InputGroup.Append>
       )}
     </InputGroup>

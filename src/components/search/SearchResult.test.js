@@ -34,16 +34,12 @@ describe('SearchResult', () => {
     const fakeProps = {
       results: [
         {
-          "name": "Aventis School of Management",
-          "state-province": null,
-          "alpha_two_code": "SG",
-          "country": "Singapore",
-          "web_pages": [
-            "http://www.aventis.edu.sg/"
-          ],
-          "domains": [
-            "aventis.edu.sg"
-          ]
+          name: 'Aventis School of Management',
+          'state-province': null,
+          alpha_two_code: 'SG',
+          country: 'Singapore',
+          web_pages: ['http://www.aventis.edu.sg/'],
+          domains: ['aventis.edu.sg']
         }
       ],
       currentPage: 1,
@@ -54,7 +50,9 @@ describe('SearchResult', () => {
 
     render(<SearchResult {...fakeProps} />);
 
-    expect(screen.getByText(/Aventis School of Management/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Aventis School of Management/i)
+    ).toBeInTheDocument();
     expect(screen.getByText(/Singapore/i)).toBeInTheDocument();
     expect(screen.getByText(/All around the world/i)).toBeInTheDocument();
     expect(screen.getByText(/1 results/i)).toBeInTheDocument();

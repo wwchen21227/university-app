@@ -1,70 +1,89 @@
-# University App
+# University Domain App
 
-A University directory.
+A SPA University domain directory web app build in React.
 
 ## Summary
 
-  - [Getting Started](#getting-started)
-  - [Runing the tests](#running-the-tests)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
-  - [Authors](#authors)
-  
-## Getting Started
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Runing the tests](#running-the-tests)
+- [Decisions and Assumptions](#decisions-and-assumptions)
+- [Authors](#authors)
 
-These instructions will get you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on how to deploy the project on a live system.
+## Features
 
-### Prerequisites
+##### Search
 
-What things you need to install the software and how to install them
+- Search University by Name or Country.
 
-    Give examples
+##### Listing
 
-### Installing
+- Listing University domain all around the world.
 
-A step by step series of examples that tell you how to get a development
-env running
+##### Newsletter Subscription
 
-Say what the step will be
+- Subscribe to monthly Newsletter.
 
-    Give the example
+## Quick Start
 
-And repeat
+1. Make sure that you have Node.js and npm installed.
+2. Clone or download this repo using git clone https://github.com/wwchen21227/university-app.git <YOUR_PROJECT_NAME>
+3. Move to the appropriate directory: cd <YOUR_PROJECT_NAME>.
+4. Run npm install in order to install dependencies.
+5. At this point you can run npm start to see the app at http://localhost:3000.
+6. Run npm install -g json-server.
+7. Run npm run json-server to start json-server at http://localhost:5000.
 
-    until finished
+#### Alternatively (start using docker)
 
-End with an example of getting some data out of the system or using it
-for a little demo
+1. Make sure that you have docker and docker compose installed.
+2. Clone or download this repo using git clone https://github.com/wwchen21227/university-app.git <YOUR_PROJECT_NAME>
+3. Move to the appropriate directory: cd <YOUR_PROJECT_NAME>.
+4. Run docker-compose up -d to start the app (port:3000) and json server (port:5000).
+5. You can see the app at http://localhost:3000 and Json Server at http://localhost:5000.
 
-## Running the tests
+## npm commands
 
-Explain how to run the automated tests for this system
+Run the following command in the root of the project directory. Make sure you have run npm install to installed all the dependencies.
 
-### Break down into end to end tests
+##### Unit test
 
-Explain what these tests test and why
+    npm test
 
-    Give an example
+##### Test Coverage
 
-### And coding style tests
+    npm run test:coverage
 
-Explain what these tests test and why
+##### linting
 
-    Give an example
+    npm run lint
 
-## Deployment
+## Decisions and Assumptions
 
-Add additional notes about how to deploy this on a live system
+#### Requirements
 
-## Built With
+Due to time constraint, therefore i've decided to focus on getting the basic requirements right. :grin:
 
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
+#### Data & Preparation
+
+I'm using the search API from http://universities.hipolabs.com/search. Due to the limitation of the API, hence i have mannually extracted some of the data into json in university-app/src/data folder.
+
+**countries.json**
+A list of all the countries data for auto-suggestion country search control.
+
+**popularCountries.json**
+Personal picked top 8 countries for building the home page UI. :grinning:
+
+**universities.json**
+The original data source of the University domain. I downloaded this because i found to fetch all the records from the api is a bit too expensive and slow. Therefore, i added a logic hack to the app if there isn't search by university name or country, the app will be using the local data (universities.json).
+
+**users.json**
+The db file for json-server to save newsletter subscriber email address.
+
+#### Backend API
+
+There isn't a requirement for backend API, however there was a requirement for saving subscriber email to users.json. To speed up the development, hence i've selected json-server to act as the rest api.
 
 ## Authors
 
-  - **Chen Weng Wei** 
+- Chen Weng Wei
