@@ -66,7 +66,7 @@ Due to time constraint, therefore i've decided to focus on getting the basic req
 
 #### Data & Preparation
 
-I'm using the search API from http://universities.hipolabs.com/search. Due to the limitation of the API, hence i have mannually extracted some of the data into json in university-app/src/data folder.
+I'm using the search API from http://universities.hipolabs.com/search. Due to the limitation of the API, hence i have manually extracted some of the data into json in university-app/src/data folder.
 
 **countries.json**
 A list of all the countries data for auto-suggestion country search control.
