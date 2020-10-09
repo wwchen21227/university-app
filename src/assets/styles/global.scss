@@ -54,13 +54,21 @@ body {
 }
 
 .main-container{
-  max-width: 1140px;
+  max-width: 760px;
+  // max-width: 1140px;
   margin: 56px auto 0;
   overflow: auto;
-  padding: 1rem;
 
   &--full-height{
     height: calc(100vh - 56px);
+  }
+
+  @media screen and (max-width: $medium-screen) {
+    padding: 0 14px;
+  }
+
+  @media screen and (min-width: $big-screen) {
+    max-width: 1140px;
   }
 }
 
