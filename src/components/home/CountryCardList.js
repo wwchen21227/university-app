@@ -2,27 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BasicImage, BasicLink } from '../common';
 
-const CountryListItem = ({ imageUrl, name }) => (
-  <li className="country-list-item">
-    <BasicImage url={imageUrl} alt={name} />
-    <BasicLink
-      url={`/search?country=${name}`}
-      text={name}
-      className="country-list-link"
-    />
-  </li>
+const CountryListItem = ({ country }) => (
+    <>
+      <BasicImage url={country.image} alt={country.name} />
+      <BasicLink
+        url={`/search?country=${country.name}`}
+        text={country.name}
+        className="country-list-link"
+      />
+    </>
+);
+
+const List = ({listClass, data, renderItem}) => (
+  <ul className={listClass}>
+    {data.map((d, i) => (
+      <li key={i} className={`${listClass}-item`}>{renderItem(d)}</li>
+    ))}
+  </ul>
 );
 
 const CountryList = ({ countries }) => (
-  <ul className="country-list">
-    {countries.map((country, index) => (
-      <CountryListItem
-        key={index}
-        imageUrl={country.image}
-        name={country.name}
-      />
-    ))}
-  </ul>
+  <List
+    listClass={'country-list'}
+    data={countries}
+    renderItem={(item) => (
+      <CountryListItem country={item}/>
+    )}
+  />
 );
 
 const CountryListHeader = ({ text }) => <h5>{text}</h5>;
